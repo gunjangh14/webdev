@@ -5,5 +5,5 @@ $(function() {
 	console.log('starting application');
 
 	app.mainView = new MainView();
-
+    Backbone.history.start();
 });

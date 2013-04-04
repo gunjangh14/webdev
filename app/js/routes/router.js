@@ -15,4 +15,3 @@
     });
 
 
-    Backbone.history.start();
