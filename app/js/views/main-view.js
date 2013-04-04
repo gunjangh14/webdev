@@ -1,6 +1,6 @@
 
 // Main Application View
-
+var app = app || {};
 
 var MainView = Backbone.View.extend({
 	el: '.page',
@@ -10,8 +10,8 @@ var MainView = Backbone.View.extend({
 
         //TODO: check to see if session is valid -  For now if the api returns invalid session please set the user model to {}
 		if ( !is_empty(app.userProfileModel)) {
-            loginView = new LoginView();
-            loginView.render();
+            app.loginView = new LoginView();
+            app.loginView.render();
         }
         else {
             this.render();
@@ -22,5 +22,7 @@ var MainView = Backbone.View.extend({
 
 	render: function() {
 		console.log('rendering');
+        var template = _.template($('#tda-main-page').html(), {});
+        this.$el.html(template);
 	}
 });

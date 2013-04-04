@@ -46,7 +46,7 @@
 						app.userProfileModel.set(jsonResponse.amtd["xml-log-in"]);
 						console.log( JSON.stringify(app.userProfileModel));
 						alert(JSON.stringify(jsonResponse.amtd["xml-log-in"]["session-id"]));
-                        app.router.navigate('home', true);
+                        app.router.navigate('', true);
 
 					}
 					console.log(jsonResponse);

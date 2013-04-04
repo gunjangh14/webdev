@@ -7,5 +7,12 @@
 		}	
 	});
 
-	app.router = new Router();
+    app.router = new Router();
 
+    app.router.on('home',function(actions){
+        app.mainView.render();
+
+    });
+
+
+    Backbone.history.start();
