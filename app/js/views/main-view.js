@@ -16,7 +16,7 @@ var MainView = Backbone.View.extend({
 		console.log('rendering');
 
         //TODO: check to see if session is valid -  For now if the api returns invalid session please set the user model to {}
-        if ( !is_empty(app.userProfileModel)) {
+        if ( !app.userProfileModel.get('session-id')) {
             app.loginView = new LoginView();
             app.loginView.render();
         }
