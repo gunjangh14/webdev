@@ -44,11 +44,11 @@
 						// we need trigger and event
 
 						app.userProfileModel.set(jsonResponse.amtd["xml-log-in"]);
-						console.log( JSON.stringify(app.userProfileModel.get('session-id')));
-
+						console.log( JSON.stringify(app.userProfileModel));
+						alert(JSON.stringify(jsonResponse.amtd["xml-log-in"]["session-id"]));
 
                         // This is an error
-                        app.mainView.render();
+						Backbone.history.navigate('watchlist', true); 
 
 					}
 					console.log(jsonResponse);

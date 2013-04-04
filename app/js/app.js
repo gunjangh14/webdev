@@ -5,5 +5,6 @@ $(function() {
 	console.log('starting application');
 
 	app.mainView = new MainView();
+	app.watchlistView = new WatchlistView();
     Backbone.history.start();
 });

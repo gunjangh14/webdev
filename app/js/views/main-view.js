@@ -7,9 +7,6 @@ var MainView = Backbone.View.extend({
 	loginView: {},
 	initialize: function(){
 		console.log("initialize");
-        this.render();
-
-
 	},		
 
 	render: function() {
