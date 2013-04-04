@@ -1,7 +1,4 @@
-var app = app || {}
-
-
-app.LoginView = Backbone.View.extend({
+	var LoginView = Backbone.View.extend({
 		el:'.page',
 		render: function(){
 			console.log('render');
@@ -21,6 +18,7 @@ app.LoginView = Backbone.View.extend({
 				password: $('#inputPassword').val()
 			};
 			
+
 			// This should moved it is here now because we need trigger an event
 			// if login is successful
 			var url = 'https://apis.tdameritrade.com/apps/100/LogIn';
@@ -43,13 +41,16 @@ app.LoginView = Backbone.View.extend({
 					{ 
 						// we need trigger and event
 
-						userProfileModel.set(jsonResponse.amtd["xml-log-in"]);
-						console.log( JSON.stringify(userProfileModel));
+						app.userProfileModel.set(jsonResponse.amtd["xml-log-in"]);
+						console.log( JSON.stringify(app.userProfileModel));
 						alert(JSON.stringify(jsonResponse.amtd["xml-log-in"]["session-id"]));
 
 					}
 					console.log(jsonResponse);
 					
+				},
+				error:function(data){
+					console.log(data);
 				}
 			});		
 		}
