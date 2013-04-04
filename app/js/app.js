@@ -6,4 +6,5 @@ $(function() {
 	console.log('starting application');
 	var userProfileModel = new UserProfileModel();
 	new MainView();
+	Backbone.history.start();
 });

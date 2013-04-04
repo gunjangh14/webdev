@@ -1,4 +1,6 @@
-	var LoginView = Backbone.View.extend({
+	var app = app || {};
+
+    var LoginView = Backbone.View.extend({
 		el:'.page',
 		render: function(){
 			console.log('render');
@@ -44,6 +46,7 @@
 						app.userProfileModel.set(jsonResponse.amtd["xml-log-in"]);
 						console.log( JSON.stringify(app.userProfileModel));
 						alert(JSON.stringify(jsonResponse.amtd["xml-log-in"]["session-id"]));
+                        app.router.navigate('home', true);
 
 					}
 					console.log(jsonResponse);
