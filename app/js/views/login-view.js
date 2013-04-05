@@ -34,7 +34,8 @@
 					// Save Response
                     console.log("parsing xml login response");
 					console.log(data);
-                    var xml = $(data)[0];
+                    var xml = parseXml(data);
+
 					var jsonResponse  = xmlToJson(xml);
 
 					if ( jsonResponse.amtd.error ){

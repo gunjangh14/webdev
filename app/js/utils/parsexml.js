@@ -13,7 +13,7 @@ function parseXml ( text ) {
                 return xml;
             }
 
-            return null;
+            return $(text)[0];
         } else {
 
             xml = new ActiveXObject( "Microsoft.XMLDOM" );
