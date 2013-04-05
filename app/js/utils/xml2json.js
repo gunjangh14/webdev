@@ -1,5 +1,6 @@
 function xmlToJson(xml) {
-
+    console.log("xml2Json");
+    console.log(xml);
 // Create the return object
     var obj = {};
 
@@ -30,7 +31,7 @@ function xmlToJson(xml) {
                 if ('undefined' === typeof(obj[nodeName])) {
                     obj[nodeName] = xmlToJson(item);
                 } else {
-                    if ('undefined' === typeof(obj[nodeName].length)) {
+                    if ('undefined' === typeof(obj[nodeName].push)) {
                         var old = obj[nodeName];
                         obj[nodeName] = [];
                         obj[nodeName].push(old);

@@ -1,19 +1,29 @@
-	var parseXml;
+function parseXml ( text ) {
+    try {
+        var xml = null;
 
+        if ( window.DOMParser ) {
 
-		if (typeof window.DOMParser != "undefined") {
-		    parseXml = function(xmlStr) {
-		        return ( new window.DOMParser() ).parseFromString(xmlStr, "text/xml");
-		    };
-		} else if (typeof window.ActiveXObject != "undefined" &&
-		       new window.ActiveXObject("Microsoft.XMLDOM")) {
-		    parseXml = function(xmlStr) {
-		        var xmlDoc = new window.ActiveXObject("Microsoft.XMLDOM");
-		        xmlDoc.async = "false";
-		        xmlDoc.loadXML(xmlStr);
-		        return xmlDoc;
-		    };
-		} else {
-		    throw new Error("No XML parser found");
-		}
-	
+            var parser = new DOMParser();
+            xml = parser.parseFromString( text, "text/xml" );
+
+            var found = xml.getElementsByTagName( "parsererror" );
+
+            if ( !found || !found.length || !found[ 0 ].childNodes.length ) {
+                return xml;
+            }
+
+            return null;
+        } else {
+
+            xml = new ActiveXObject( "Microsoft.XMLDOM" );
+
+            xml.async = false;
+            xml.loadXML( text );
+
+            return xml;
+        }
+    } catch ( e ) {
+        // suppress
+    }
+}

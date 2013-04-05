@@ -31,17 +31,19 @@
 				data:'userid=' + userDetails.username + '&password=' + userDetails.password + '&source=TST&version=1001',
 				success:function(data) {
 					// convert data in JSON from XML
-					// Save Response 
+					// Save Response
+                    console.log("parsing xml login response");
 					console.log(data);
-					var xml = parseXml( data );
+                    var xml = $(data)[0];
 					var jsonResponse  = xmlToJson(xml);
+
 					if ( jsonResponse.amtd.error ){
 						alert(JSON.stringify(jsonResponse.amtd.error));
 
 					}	
 					else
 					{ 
-						// we need trigger and event
+
 
 						app.userProfileModel.set(jsonResponse.amtd["xml-log-in"]);
 						console.log( JSON.stringify(app.userProfileModel));
