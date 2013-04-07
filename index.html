@@ -57,7 +57,11 @@
 	<script type="text/javascript" src="app/js/utils/xml2json.js"></script>
 	<script type="text/javascript" src="app/js/utils/serializeobj.js"></script>
     <script type="text/javascript" src="app/js/utils/emptyobj.js"></script>
+    <script type="text/javascript" src="app/js/streamer/streamermanager.js"></script>
+    <script type="text/javascript" src="app/js/streamer/tdaStreamer.js"></script>
 	<script type="text/javascript" src="app/js/model/userprofilemodel.js"></script>
+	<script type="text/javascript" src="app/js/model/watchlistmodel.js"></script>
+	<script type="text/javascript" src="app/js/model/watchlistmodelcollection.js"></script>
 	<script type="text/javascript" src="app/js/routes/router.js"></script>
 	<script type="text/javascript" src="app/js/views/login-view.js"></script>
     <script type="text/javascript" src="app/js/views/watch-view.js"></script>
@@ -73,13 +77,13 @@
 			<div class="control-group">
 				<label class="control-label" for="inputUsername">User Name</label>
 				<div class="controls">
-					<input type="text" name="username" id="inputUsername" placeholder="User Name"/>
+					<input type="text" name="username" value="apiuprtest07" id="inputUsername" placeholder="User Name"/>
 				</div>
 			</div>
 			<div class="control-group">
 				<label class="control-label" for="inputPassword" placeholder="Password">Password</Label>
 				<div class="controls">
-					<input type="password" name="password" id="inputPassword"/>
+					<input type="password" name="password" value="07apiuprtest" id="inputPassword"/>
 				</div>
 			</div>
 			<div class="control-group">
@@ -87,11 +91,53 @@
 					<button type="button" class="btn btn-success" id="loginButton"> Login </button>
 				</div>
 			</div>
-		</form> 
+		</form>
 	</script>
     <script  type="text/template" id="tda-main-page">
         <h1>Welcome!</h1>
     </script>
 
+    <script type="text/template" id="watch-list-template">
+
+			<div class="btn-group">
+				<a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
+				WatchList
+				<span class="caret"></span>
+				</a>
+				<ul class="dropdown-menu">
+					<li role="presentation"><a role="menuitem" tabindex="-1" href="#watchlistname/default">default</a></li>
+					<li role="presentation"><a role="menuitem" tabindex="-1" href="#watchlistname/api">api</a></li>
+	                <li role="presentation"><a role="menuitem" tabindex="-1" href="#watchlistname/Indices">Indices</a></li>
+				</ul>
+			</div>
+		<table  id="watchlistTable" class="table table-hover">
+			<thead>
+				<tr>
+					<th>SYMBOL</th>
+					<th id="SYMBOL1">BID</th>
+					<th id="SYMBOL2">ASK</th>
+					<th id="SYMBOL3">LAST</th>
+					<th id="SYMBOL4">CHANG</th>
+					<th id="SYMBOL5">%CHANG</th>
+				</tr>
+			</thead>
+			<tbody>
+				<% coll.each(function(model){
+				%>
+					<tr>
+						<td><%= model.get('symbol')%></td>
+						<td id='<%= model.get("symbol")%>bid' ><%= model.get('bid')%></td>
+						<td id='<%= model.get("symbol")%>ask' ><%= model.get('ask')%></td>
+						<td id='<%= model.get("symbol")%>last' ><%= model.get('last')%></td>
+						<td id='<%= model.get("symbol")%>change' ><%= model.get('change')%></td>
+						<td id='<%= model.get("symbol")%>changePercent' ><%= model.get('changePercent')%></td>
+					<tr>
+				<%
+				}); %>
+
+			</tbody>
+			</table>
+	</script>
+
 </body>
-</html> 
+</html>

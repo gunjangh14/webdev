@@ -4,7 +4,8 @@
 	var Router = Backbone.Router.extend({
 		routes: {
 			'':'home',
-			'watchlist':'watchlist'
+			'watchlist':'watchlist',
+			'watchlistname/:name':'watchlistname'
 		}	
 	});
 
@@ -15,10 +16,12 @@
 
     });
 	
-	app.router.on('route:watchlist',function(actions){
-		
-        app.watchlistView.render();
-
+    app.router.on('route:watchlist',function(actions){
+         app.watchlistView.render();
     });
 
+    app.router.on('route:watchlistname',function(name){
+        app.watchlistView.renderList(name);
+
+    });
 

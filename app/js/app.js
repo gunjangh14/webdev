@@ -5,6 +5,7 @@ $(function() {
 	console.log('starting application');
 
 	app.mainView = new MainView();
-	app.watchlistView = new WatchlistView();
-    Backbone.history.start();
+	var dummyCollection  = new WatchListModelCollection()
+	app.watchlistView = new WatchlistView({collection: dummyCollection});
+        Backbone.history.start();
 });

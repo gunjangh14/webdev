@@ -23,7 +23,7 @@
 
 			// This should moved it is here now because we need trigger an event
 			// if login is successful
-			var url = 'https://apis.tdameritrade.com/apps/100/LogIn';
+			var url = 'https://apis.tdameritrade.com/apps/300/LogIn';
 			$.ajax({
 				url:url,
 				type:'POST',
@@ -45,13 +45,11 @@
 					else
 					{ 
 
-
 						app.userProfileModel.set(jsonResponse.amtd["xml-log-in"]);
 						console.log( JSON.stringify(app.userProfileModel));
 						alert(JSON.stringify(jsonResponse.amtd["xml-log-in"]["session-id"]));
-
-                        // This is an error
-						Backbone.history.navigate('watchlist', true); 
+						getSteamerInfo(app);
+                        			// This is an error
 
 					}
 					console.log(jsonResponse);
