@@ -124,7 +124,7 @@
 				<% coll.each(function(model){
 				%>
 					<tr>
-						<td><%= model.get('symbol')%></td>
+						<td><a href="#quotedetails/<%= model.get('symbol')%>"><%= model.get('symbol')%></a></td>
 						<td id='<%= model.cid%>bid' ><%= model.get('bid')%></td>
 						<td id='<%= model.cid%>ask' ><%= model.get('ask')%></td>
 						<td id='<%= model.cid%>last' ><%= model.get('last')%></td>
