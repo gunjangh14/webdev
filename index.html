@@ -11,7 +11,6 @@
 	<link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/2.3.0/css/bootstrap-responsive.min.css">
 
 
-
 </head>
 <body>
 
@@ -105,9 +104,9 @@
 				<span class="caret"></span>
 				</a>
 				<ul class="dropdown-menu">
-					<li role="presentation"><a role="menuitem" tabindex="-1" href="#watchlistname/default">default</a></li>
-					<li role="presentation"><a role="menuitem" tabindex="-1" href="#watchlistname/api">api</a></li>
-	                <li role="presentation"><a role="menuitem" tabindex="-1" href="#watchlistname/Indices">Indices</a></li>
+					<% for(var propt in wlmap){ %>
+						<li role="presentation"><a role="menuitem" tabindex="-1" href="#watchlistname/<%= propt%>"><%= propt%></a></li>
+					<% }%>
 				</ul>
 			</div>
 		<table  id="watchlistTable" class="table table-hover">
@@ -126,11 +125,11 @@
 				%>
 					<tr>
 						<td><%= model.get('symbol')%></td>
-						<td id='<%= model.get("symbol")%>bid' ><%= model.get('bid')%></td>
-						<td id='<%= model.get("symbol")%>ask' ><%= model.get('ask')%></td>
-						<td id='<%= model.get("symbol")%>last' ><%= model.get('last')%></td>
-						<td id='<%= model.get("symbol")%>change' ><%= model.get('change')%></td>
-						<td id='<%= model.get("symbol")%>changePercent' ><%= model.get('changePercent')%></td>
+						<td id='<%= model.cid%>bid' ><%= model.get('bid')%></td>
+						<td id='<%= model.cid%>ask' ><%= model.get('ask')%></td>
+						<td id='<%= model.cid%>last' ><%= model.get('last')%></td>
+						<td id='<%= model.cid%>change' ><%= model.get('change')%></td>
+						<td id='<%= model.cid%>changePercent' ><%= model.get('changePercent')%></td>
 					<tr>
 				<%
 				}); %>

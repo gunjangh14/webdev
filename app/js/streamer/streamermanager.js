@@ -96,3 +96,10 @@ function addLevel1QuoteSubscription(symbols){
 	var dataID = "QUOTE";
 	app.streamer.addSymbol(dataID, symbols, fields);
 }
+
+//pass comma seperated symbols for level1 quote subscription
+function unSubscribeLevel1QuoteSubscription(symbols){
+	symbols = symbols.toUpperCase();
+	var dataID = "QUOTE";
+	app.streamer.removeSymbol(dataID, symbols);
+}

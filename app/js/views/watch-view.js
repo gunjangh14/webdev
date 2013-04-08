@@ -63,7 +63,7 @@ var WatchlistView = Backbone.View.extend({
 					       			wlc.add(wlObj);
 					       		}
 					       	}
-					       	//var template = _.template($('#watch-list-template').html(), {coll:wlc});
+					       	//var template = _.template($('#watch-list-template').html(), {coll:wlc,wlmap:app.watchListMap});
 						//this.$el.html(template);
 						
 						// This is an error
@@ -72,7 +72,7 @@ var WatchlistView = Backbone.View.extend({
 						app.watchlistView.render();
 						app.watchlistView.collection.on("change",app.watchlistView.update);
 						app.watchlistView.collection.on("add",app.watchlistView.render);
-
+						
 					}
 					console.log(jsonResponse);
 
@@ -84,7 +84,7 @@ var WatchlistView = Backbone.View.extend({
 	            	
 	            }else{
 	            	//this.$el.html("showing WATCHLISTTT");
-	            	var template = _.template($('#watch-list-template').html(), {coll:this.collection});
+	            	var template = _.template($('#watch-list-template').html(), {coll:this.collection,wlmap:app.watchListMap});
 			this.$el.html(template);
 			app.currentWLMap= {};
 			var symbols='';
@@ -99,6 +99,12 @@ var WatchlistView = Backbone.View.extend({
 	},
 	
 	renderList: function(name){
+		var symbols='';
+		this.collection.each(function(model){
+			symbols = symbols+","+model.get('symbol');
+			app.currentWLMap[model.get('symbol')]=model;
+		});
+		unSubscribeLevel1QuoteSubscription(symbols);
 		var wlc = app.watchListMap[name];
 		app.watchlistView.collection = wlc;
 		app.watchlistView.render();
@@ -111,12 +117,7 @@ var WatchlistView = Backbone.View.extend({
 		var diff = model.changedAttributes();
 		for(var att in diff){
 			console.log(" callingge  ..."+att);
-			$("#"+model.get('symbol')+att).text(model.get(att));
+			$("#"+model.cid+att).text(model.get(att));
 		}				
-		/*$("#"+model.get('symbol')+"bid").text(model.get('bid'));
-		$("#"+model.get('symbol')+"ask").text(model.get('ask'));
-		$("#"+model.get('symbol')+"last").text(model.get('last'));
-		$("#"+model.get('symbol')+"change").text(model.get('change'));
-		$("#"+model.get('symbol')+"changePercent").text(model.get('changePercent')); */
 	}
 });
